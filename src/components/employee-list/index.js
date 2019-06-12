@@ -25,16 +25,17 @@ class EmployeeList extends React.Component {
     }
 
     loadList() {
-        const url = "http://10.197.122.131:8080/employees/";
+        const url = "http://" + process.env.REACT_APP_SERVICE_URL + "/employees/";
+        console.log(process.env.REACT_APP_SERVICE_URL)
         fetch(url)
-        .then((response) => {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            return response;
-        })
-        .then((response) => response.json())
-        .then((employeeList) => this.setState({employeeList}));
+            .then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response;
+            })
+            .then((response) => response.json())
+            .then((employeeList) => this.setState({ employeeList }));
     }
 }
 
